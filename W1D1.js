@@ -11,7 +11,7 @@ const expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 // Pseudocode
 // outer for loop (var i) that starts at the length of the array decrements to 0
 // inner for loop (var j) that loops from 0 to the outer loop variable (i)
-// check if the arr[j+1] > arr[j]
+// check if the arr[j+1] < arr[j]
 // if so, swap the two values using a temp variable
 // after outer loop finishes, return the array
 
@@ -33,11 +33,24 @@ function bubbleSort(nums) {
 function selectionSort(nums) {
   //given an unsorted array, sort the array using selectionSort
   // i.e. find the largest value and put it at the end
-
+  for(let i=0; i<nums.length; i++){
+    let min = nums[i];
+    let min_index=i;
+    for(let j=i; j<nums.length; j++){
+      if(nums[j]<min){
+        min = nums[j];
+        min_index = j;
+      }
+    }
+    let temp = nums[i];
+    nums[i]=nums[min_index];
+    nums[min_index]=temp;
+  }
+  return nums
 }
 
-console.log(bubbleSort(numsOrdered));
-console.log(bubbleSort(numsRandomOrder));
-console.log(bubbleSort(numsReversed));
+console.log(selectionSort(numsOrdered));
+console.log(selectionSort(numsRandomOrder));
+console.log(selectionSort(numsReversed));
 
 
